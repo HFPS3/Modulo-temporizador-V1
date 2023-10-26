@@ -1,0 +1,69 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+004-005 @WRITE_PROGRAM_MEMORY8.P2
+006     puerto_b
+007.0   RC0_bit
+007.1   RC1_bit
+007.2   RC2_bit
+015     CCP_1
+015     CCP_1_LOW
+016     CCP_1_HIGH
+01B     CCP_2_LOW
+01B     CCP_2
+01C     CCP_2_HIGH
+021     main.ignicion
+022     main.cargaBus
+023     main.@SCRATCH1
+024     @delay_ms2.P1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+107.6   C1OUT
+108.6   C2OUT
+10D-10E @READ_PROGRAM_MEMORY8.P1
+10D-10E @WRITE_PROGRAM_MEMORY8.P2
+
+ROM Allocation:
+000004  @delay_ms2
+000018  main
+000018  @cinit1
+00002A  @cinit2
+
+Project Directory:
+    C:\Users\Hector Pastrana\Documents\Programas modulo temporizador\
+
+Project Files:
+    V1.c                                                    [25-oct.-23 12:09  CRC=E920FF45]
+    V1.h                                                    [24-oct.-23 13:32  CRC=00000000]
+    ..\..\..\..\Program Files (x86)\PICC\Devices\16F883.h   [15-ene.-18 15:53  CRC=7A46A7C4]
+    ..\..\..\..\Program Files (x86)\PICC\Devices\16f883.h   [15-ene.-18 15:53  CRC=7A46A7C4]
+
+Source signature=57F4F691
+Program memory checksum=0000
+Program memory CRC=0000
+Hex file CRC=3196
+
+Units:
+    V1 (main)
+
+Compiler Settings:
+    Processor:      PIC16F883
+    Pointer Size:   16
+    ADC Range:      0-1023
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+    Compile Mode:       CCS5
+
+Output Files:
+    XREF file:   V1.xsym
+    Errors:      V1.err
+    Ext Symbols: V1.esym
+    INHX8:       V1.hex
+    Symbols:     V1.sym
+    List:        V1.lst
+    Debug/COFF:  V1.cof
+    Project:     V1.ccspjt
+    Call Tree:   V1.tre
+    Statistics:  V1.STA

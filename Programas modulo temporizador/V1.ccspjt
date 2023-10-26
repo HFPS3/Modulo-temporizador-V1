@@ -1,0 +1,101 @@
+[PROJECT]
+Target=V1.hex
+Processor_Text=PIC16F883
+CCSVerions=5.076
+Compiler=PCM
+CCSVersion=5.076
+[Target Data]
+FileList=V1.c
+[Directories]
+Include=
+[C:\Users\Hector Pastrana\Documents\Programas modulo temporizador\V1]
+Type=4
+[mru-list]
+1=V1.c
+
+[fileformats]
+forcecoff=0
+
+[ProjectLog]
+Days=2
+D1=24-10-2023
+D1_L=38
+D1_L1=[48750]Project Opened.
+D1_L2=[48785]Started Editing.
+D1_L3=[49085]Stopped Editing.
+D1_L4=[50352]Started Editing.
+D1_L5=[50691]Stopped Editing.
+D1_L6=[50713]Started Editing.
+D1_L7=[51018]Stopped Editing.
+D1_L8=[51121]Started Editing.
+D1_L9=[51931]Stopped Editing.
+D1_L10=[52738]Started Editing.
+D1_L11=[53073]Stopped Editing.
+D1_L12=[53099]Started Editing.
+D1_L13=[54157]Stopped Editing.
+D1_L14=[54174]Started Editing.
+D1_L15=[54479]Project Opened.
+D1_L16=[54523]Started Editing.
+D1_L17=[55307]Stopped Editing.
+D1_L18=[55597]Started Editing.
+D1_L19=[57388]Stopped Editing.
+D1_L20=[57424]Started Editing.
+D1_L21=[58282]Stopped Editing.
+D1_L22=[58356]Started Editing.
+D1_L23=[65000]Stopped Editing.
+D1_L24=[65028]Started Editing.
+D1_L25=[65107]Stopped Editing.
+TotalEdit=473
+TotalDebug=0
+D1_E=337
+D1_D=0
+D1_L26=[65107]Project Closed.
+D1_L27=[65179]Project Opened.
+D1_L28=[65225]Started Editing.
+D1_L29=[66193]Stopped Editing.
+D1_L30=[66205]Started Editing.
+D1_L31=[67382]Stopped Editing.
+D1_L32=[67467]Started Editing.
+D1_L33=[69695]Stopped Editing.
+D1_L34=[70373]Started Editing.
+D1_L35=[73941]Stopped Editing.
+D1_L36=[74118]Started Editing.
+D1_L37=[78575]Stopped Editing.
+D1_L38=[78575]Project Closed.
+D2=25-10-2023
+D2_L=20
+D2_L1=[28350]Project Opened.
+D2_L2=[28550]Started Editing.
+D2_L3=[28871]Stopped Editing.
+D2_L4=[32054]Started Editing.
+D2_L5=[32356]Stopped Editing.
+D2_L6=[32586]Started Editing.
+D2_L7=[33532]Stopped Editing.
+D2_L8=[33677]Started Editing.
+D2_L9=[35550]Stopped Editing.
+D2_L10=[35554]Started Editing.
+D2_L11=[36526]Stopped Editing.
+D2_L12=[37076]Started Editing.
+D2_L13=[37405]Stopped Editing.
+D2_L14=[37423]Started Editing.
+D2_L15=[39799]Stopped Editing.
+D2_L16=[40803]Started Editing.
+D2_L17=[44086]Stopped Editing.
+D2_L18=[44516]Started Editing.
+D2_L19=[44662]Stopped Editing.
+D2_E=136
+D2_D=0
+D2_L20=[44662]Project Closed.
+
+[Opened Files]
+1=V1.c
+t1=13
+Count=1
+[V1.c]
+Type=4
+
+[defines]
+buildcount=172
+[Units]
+Count=1
+1=V1 (main)

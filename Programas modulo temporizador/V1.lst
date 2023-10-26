@@ -1,0 +1,260 @@
+CCS PCM C Compiler, Version 5.076, 56587               25-oct.-23 12:10
+
+               Filename:   C:\Users\Hector Pastrana\Documents\Programas modulo temporizador\V1.lst
+
+               ROM used:   130 words (3%)
+                           Largest free fragment is 2048
+               RAM used:   8 (3%) at main() level
+                           9 (4%) worst case
+               Stack used: 1 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   018
+0003:  NOP
+.................... #include <V1.h> 
+.................... #include <16F883.h> 
+.................... //////////// Standard Header file for the PIC16F883 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2014 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F883 
+....................  
+.................... #list 
+....................  
+.................... #device ADC=10 
+.................... #use delay(crystal=20000000) 
+....................  
+....................  
+....................  
+.................... #include <16f883.h> 
+.................... //////////// Standard Header file for the PIC16F883 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2014 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F883 
+....................  
+.................... #list 
+....................  
+.................... #fuses NOWDT, PUT, NOMCLR, BROWNOUT, NOLVP, NOCPD, NOWRT, NODEBUG, NOPROTECT, INTRC_IO, NOFCMEN, NOIESO 
+.................... #use delay(clock = 20000000) /* Reloj de 20 MHz */ 
+0004:  MOVLW  24
+0005:  MOVWF  04
+0006:  BCF    03.7
+0007:  MOVF   00,W
+0008:  BTFSC  03.2
+0009:  GOTO   017
+000A:  MOVLW  06
+000B:  MOVWF  78
+000C:  CLRF   77
+000D:  DECFSZ 77,F
+000E:  GOTO   00D
+000F:  DECFSZ 78,F
+0010:  GOTO   00C
+0011:  MOVLW  7B
+0012:  MOVWF  77
+0013:  DECFSZ 77,F
+0014:  GOTO   013
+0015:  DECFSZ 00,F
+0016:  GOTO   00A
+0017:  RETURN
+....................  
+.................... #byte puerto_b = 0x06 /* Dirección del puerto B */ 
+....................  
+.................... #bit RC0_bit = 0x07.0 
+.................... #bit RC1_bit = 0x07.1 
+.................... #bit RC2_bit = 0x07.2 
+....................  
+.................... void main() { 
+0018:  MOVF   03,W
+0019:  ANDLW  1F
+001A:  MOVWF  03
+001B:  BSF    03.5
+001C:  BSF    03.6
+001D:  MOVF   09,W
+001E:  ANDLW  C0
+001F:  MOVWF  09
+0020:  BCF    03.6
+0021:  BCF    1F.4
+0022:  BCF    1F.5
+0023:  MOVLW  00
+0024:  BSF    03.6
+0025:  MOVWF  08
+0026:  BCF    03.5
+0027:  CLRF   07
+0028:  CLRF   08
+0029:  CLRF   09
+002A:  BCF    03.7
+....................     set_tris_b(0x00); 
+002B:  MOVLW  00
+002C:  BSF    03.5
+002D:  BCF    03.6
+002E:  MOVWF  06
+....................     puerto_b = 0; 
+002F:  BCF    03.5
+0030:  CLRF   06
+....................     int ignicion = 1; 
+....................     int cargaBus = 1; 
+0031:  MOVLW  01
+0032:  MOVWF  21
+0033:  MOVWF  22
+....................  
+....................     while (1) { 
+....................         // ENTRADAS 
+....................         // RC0 = +15 
+....................         // RC1 = Radio 
+....................         // RC2 = EV 20-21 
+....................         // RC3 = Disponible 
+....................  
+....................         // SALIDAS 
+....................         // RB0 = Rutero frontal 
+....................         // RB1 = Radio 
+....................         // RB2 = NVR 
+....................         // RB3 = Switch 
+....................  
+....................         // +15 
+....................         if (!RC0_bit) { 
+0034:  BTFSC  07.0
+0035:  GOTO   04C
+....................             if (ignicion) { 
+0036:  MOVF   21,F
+0037:  BTFSC  03.2
+0038:  GOTO   04B
+....................                 // Cuando RC0 está en 1, enciende las salidas 
+....................                 bit_set(puerto_b, 0);  // Enciende RB0 
+0039:  BSF    06.0
+....................                 delay_ms(400); 
+003A:  MOVLW  02
+003B:  MOVWF  23
+003C:  MOVLW  C8
+003D:  MOVWF  24
+003E:  CALL   004
+003F:  DECFSZ 23,F
+0040:  GOTO   03C
+....................                 bit_set(puerto_b, 2);  // Enciende RB2 
+0041:  BSF    06.2
+....................                 delay_ms(400);  // Escalonado 2 segundos 
+0042:  MOVLW  02
+0043:  MOVWF  23
+0044:  MOVLW  C8
+0045:  MOVWF  24
+0046:  CALL   004
+0047:  DECFSZ 23,F
+0048:  GOTO   044
+....................                 bit_set(puerto_b, 3);  // Enciende RB3 
+0049:  BSF    06.3
+....................                 ignicion = 0; 
+004A:  CLRF   21
+....................             } 
+....................         } else { 
+004B:  GOTO   062
+....................             if (!ignicion) { 
+004C:  MOVF   21,F
+004D:  BTFSS  03.2
+004E:  GOTO   062
+....................                 // Cuando RC0 cambia a 0, espera 5 minutos 
+....................                 delay_ms(60000);  // Espera 5 minutos 
+004F:  MOVLW  F0
+0050:  MOVWF  23
+0051:  MOVLW  FA
+0052:  MOVWF  24
+0053:  CALL   004
+0054:  DECFSZ 23,F
+0055:  GOTO   051
+....................  
+....................                 // Apaga las salidas 
+....................                 bit_clear(puerto_b, 0);  // Apaga RB0 
+0056:  BCF    06.0
+....................                 bit_clear(puerto_b, 3);  // Apaga RB3 
+0057:  BCF    06.3
+....................                 delay_ms(12000); 
+0058:  MOVLW  30
+0059:  MOVWF  23
+005A:  MOVLW  FA
+005B:  MOVWF  24
+005C:  CALL   004
+005D:  DECFSZ 23,F
+005E:  GOTO   05A
+....................                 bit_clear(puerto_b, 2);  // Apaga RB2 apaga 1 minuto después 
+005F:  BCF    06.2
+....................                 ignicion = 1; 
+0060:  MOVLW  01
+0061:  MOVWF  21
+....................             } 
+....................         } 
+....................  
+....................         // Activación radio 
+....................         if (!RC0_bit && !RC1_bit) { 
+0062:  BTFSC  07.0
+0063:  GOTO   068
+0064:  BTFSC  07.1
+0065:  GOTO   068
+....................             bit_set(puerto_b, 1); 
+0066:  BSF    06.1
+....................         } else { 
+0067:  GOTO   069
+....................             bit_clear(puerto_b, 1); 
+0068:  BCF    06.1
+....................         } 
+....................  
+....................         // EV 20-21 
+....................         if (!RC2_bit) { 
+0069:  BTFSC  07.2
+006A:  GOTO   072
+....................             if (cargaBus) {  // Escalonado 2 segundos 
+006B:  MOVF   22,F
+006C:  BTFSC  03.2
+006D:  GOTO   071
+....................                 bit_set(puerto_b, 2);  // Enciende RB2 
+006E:  BSF    06.2
+....................                 bit_set(puerto_b, 3);  // Enciende RB3 
+006F:  BSF    06.3
+....................                 cargaBus = 0; 
+0070:  CLRF   22
+....................             } 
+....................         } else { 
+0071:  GOTO   080
+....................             if (!cargaBus) { 
+0072:  MOVF   22,F
+0073:  BTFSS  03.2
+0074:  GOTO   080
+....................                 delay_ms(24000); 
+0075:  MOVLW  60
+0076:  MOVWF  23
+0077:  MOVLW  FA
+0078:  MOVWF  24
+0079:  CALL   004
+007A:  DECFSZ 23,F
+007B:  GOTO   077
+....................                 // Apaga las salidas 
+....................                 bit_clear(puerto_b, 3);  // Apaga RB3 
+007C:  BCF    06.3
+....................                 bit_clear(puerto_b, 2);  // Apaga RB2 
+007D:  BCF    06.2
+....................                 cargaBus = 1; 
+007E:  MOVLW  01
+007F:  MOVWF  22
+....................             } 
+....................         } 
+0080:  GOTO   034
+....................     } 
+.................... } 
+0081:  SLEEP
+
+Configuration Fuses:
+   Word  1: 23C4   INTRC_IO NOWDT PUT NOMCLR NOPROTECT NOCPD BROWNOUT NOIESO NOFCMEN NOLVP NODEBUG
+   Word  2: 3FFF   BORV40 NOWRT
